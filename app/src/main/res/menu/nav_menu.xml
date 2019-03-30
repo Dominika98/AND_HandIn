@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/display_data"
+            android:icon="@drawable/data_icon"
+            android:title="Display Data"/>
+        <item
+            android:id="@+id/add_workout"
+            android:icon="@drawable/add_icon"
+            android:title="Add Completed Workout"/>
+        <item
+            android:id="@+id/cup_settings"
+            android:icon="@drawable/glass_settings_icon"
+            android:title="Glass Settings"/>
+        <item
+            android:id="@+id/step_counter"
+            android:icon="@drawable/stepps_icon"
+            android:title="Steps Counter"/>
+    </group>
+    <item android:title="View Detailed Data">
+        <menu>
+            <item
+                android:id="@+id/workout_data"
+                android:title="Workout Data"/>
+            <item
+                android:id="@+id/drinking_data"
+                android:title="Drinking Water Data"/>
+
+        </menu>
+    </item>
+    <item android:title="Settings">
+    <menu>
+        <item
+            android:id="@+id/general_setting"
+            android:icon="@drawable/settings_icon"
+            android:title="General Settings"/>
+
+    </menu>
+</item>
+    <item android:title="Feedback">
+        <menu>
+            <item
+                android:id="@+id/feedback"
+                android:icon="@drawable/feedback"
+                android:title="Give us Feedback"/>
+
+        </menu>
+    </item>
+</menu>

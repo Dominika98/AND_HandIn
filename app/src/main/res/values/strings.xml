@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Love for Health</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <string-array name="workouts">
+        <item>Running</item>
+        <item>Swimming</item>
+        <item>Cardio</item>
+        <item>Cycling</item>
+        <item>Roler/Ice Skating</item>
+        <item>Strength - Arms</item>
+        <item>Strength - Chest</item>
+        <item>Strength - Legs</item>
+        <item>Strength - Stomach</item>
+        <item>Strength - Back</item>
+    </string-array>
+</resources>
