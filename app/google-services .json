@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "225389732537",
+    "firebase_url": "https://love-for-health.firebaseio.com",
+    "project_id": "love-for-health",
+    "storage_bucket": "love-for-health.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225389732537:android:028788c76d193497",
+        "android_client_info": {
+          "package_name": "com.example.loveforhealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "225389732537-29urmfdvdnh87g4jetfsij1qvmkjmt5b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.loveforhealth",
+            "certificate_hash": "a5cbfe8cbbf2c9e57a89f8ac6399b679c897c43a"
+          }
+        },
+        {
+          "client_id": "225389732537-uq250anj4gqckj97kguh67qjqk2u1pat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAX42tQQQ8DtXDyIV11xUxRfZ-9O54fz-s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "225389732537-uq250anj4gqckj97kguh67qjqk2u1pat.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

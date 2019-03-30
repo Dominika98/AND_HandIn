@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewWorkouts"
-            android:label="View My Workouts"
+        <activity android:name=".Feedback"
+            android:label="Give Feedback"
             android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".ViewWorkouts"
+            android:label="View My Workouts"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".WorkoutEditor"
             android:label="Add New Workout"
