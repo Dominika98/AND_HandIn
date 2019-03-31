@@ -23,6 +23,7 @@ public class Feedback extends AppCompatActivity {
     TextView display;
     EditText input;
     Button btn_send;
+    String strDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,9 @@ public class Feedback extends AppCompatActivity {
                 displayFeedback();
             }
         });
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        strDate = format.format(calendar.getTime());
     }
 
     @Override
@@ -60,12 +64,12 @@ public class Feedback extends AppCompatActivity {
             display.setText("You didn't post any feedback yet. Please post so we can improve your experience!");
         }
         else {
-            display.setText(feedback);
+            display.setText(feedback + " (" + strDate + ")");
         }
     }
 
     public void displayFeedback() {
-        display.setText(input.getText().toString());
+        display.setText(input.getText().toString() + " (" + strDate + ")");
 
         SharedPreferences text = getSharedPreferences("MyPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = text.edit();
