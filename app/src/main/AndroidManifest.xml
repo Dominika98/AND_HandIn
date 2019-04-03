@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CupSettings"
-            android:label="Cup Settings"
+        <activity android:name=".StepCounter"
+            android:label="Step Counter"
             android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".CupSettings"
+            android:label="Cup Settings"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ViewDrinkingWater"
             android:label="View Drinking Data"

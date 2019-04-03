@@ -30,15 +30,6 @@
 
         </menu>
     </item>
-    <item android:title="Settings">
-    <menu>
-        <item
-            android:id="@+id/general_setting"
-            android:icon="@drawable/settings_icon"
-            android:title="General Settings"/>
-
-    </menu>
-</item>
     <item android:title="Feedback">
         <menu>
             <item

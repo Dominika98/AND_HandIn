@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar myToolbar;
     TextView waterDetailsAmount;
     TextView waterDetailsDate;
-    ProgressBar progress;
+    TextView workoutType;
+    TextView workoutDuration;
+    TextView workoutDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +40,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         myToolbar = (Toolbar) findViewById(R.id.myToolbar);
         setSupportActionBar(myToolbar);
-
-        progress = (ProgressBar) findViewById(R.id.progress);
-
+        
         waterDetailsAmount = (TextView) findViewById(R.id.tv_water_details_amount);
         waterDetailsDate = (TextView) findViewById(R.id.tv_water_details_date);
+
+        workoutType = (TextView) findViewById(R.id.tv_wtype);
+        workoutDuration = (TextView) findViewById(R.id.tv_wduration);
+        workoutDate = (TextView) findViewById(R.id.tv_wdate);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -56,6 +60,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         updateWaterView();
+        latestWorkout();
+    }
+
+    private void latestWorkout() {
+        WorkoutDbHelper workoutDbHelper = new WorkoutDbHelper(this);
+        SQLiteDatabase db = workoutDbHelper.getReadableDatabase();
+
+        String[] projection = {
+                WorkoutContract.WorkoutEntry.COLUMN_WORKOUT_DATE,
+                WorkoutContract.WorkoutEntry.COLUMN_WORKOUT_TYPE,
+                WorkoutContract.WorkoutEntry.COLUMN_WORKOUT_DURATION};
+
+        Cursor cursor = db.query(
+                WorkoutContract.WorkoutEntry.TABLE_NAME,
+                projection,
+                null, null, null, null,
+                WorkoutContract.WorkoutEntry.COLUMN_WORKOUT_TIMESTAMP + " DESC");
+
+        if(cursor.moveToFirst()) {
+            String type = cursor.getString(cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_WORKOUT_TYPE));
+            int duration = cursor.getInt(cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_WORKOUT_DURATION));
+            String date = cursor.getString(cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_WORKOUT_DATE));
+
+            workoutDate.setText(date);
+            workoutDuration.setText(duration + "min");
+            workoutType.setText(type);
+        }
     }
 
     public void drink(View view) {
@@ -95,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             values.put(WaterContract.WaterEntry.COLUMN_WATER_AMOUNT, newAmount);
 
             int count = db.update(WaterContract.WaterEntry.TABLE_NAME, values, selection, arguments);
+            
             updateWaterView();
         } else {
             Toast.makeText(this, "Something went wrong.", Toast.LENGTH_SHORT).show();
@@ -132,12 +164,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             int amount = cursor.getInt(cursor.getColumnIndex(WaterContract.WaterEntry.COLUMN_WATER_AMOUNT));
             waterDetailsDate.setText(cursor.getString(cursor.getColumnIndex(WaterContract.WaterEntry.COLUMN_WATER_DATE)));
             waterDetailsAmount.setText(amount + "ml / 2000ml");
-            if(amount < 2000) {
-                int currentProgress = amount / 2000 * 100;
-                progress.setProgress(currentProgress);
-            } else {
-                progress.setProgress(100);
-            }
         }
         else {
             db = waterDbHelper.getWritableDatabase();
@@ -171,6 +197,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.step_counter:
+                intent = new Intent(this, StepCounter.class);
+                startActivity(intent);
                 break;
             case R.id.workout_data:
                 intent = new Intent(this, ViewWorkouts.class);
@@ -179,8 +207,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.drinking_data:
                 intent = new Intent(this, ViewDrinkingWater.class);
                 startActivity(intent);
-                break;
-            case R.id.general_setting:
                 break;
             case R.id.feedback:
                 intent = new Intent(this, Feedback.class);
