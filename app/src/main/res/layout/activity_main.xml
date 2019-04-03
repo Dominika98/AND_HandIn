@@ -37,7 +37,20 @@
             android:text="28/03/2019"
             android:background="#c8fc8c"
             style="@style/DataText"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Progress:"
+            android:textSize="20dp"/>
 
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:foregroundGravity="top"
+            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+            android:progress="0" />
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

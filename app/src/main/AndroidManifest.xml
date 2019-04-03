@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewDrinkingWater"
-            android:label="View Drinking Data"
+        <activity android:name=".CupSettings"
+            android:label="Cup Settings"
             android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".ViewDrinkingWater"
+            android:label="View Drinking Data"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Feedback"
             android:label="Give Feedback"

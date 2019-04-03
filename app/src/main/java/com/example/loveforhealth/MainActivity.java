@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar myToolbar;
     TextView waterDetailsAmount;
     TextView waterDetailsDate;
+    ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         myToolbar = (Toolbar) findViewById(R.id.myToolbar);
         setSupportActionBar(myToolbar);
+
+        progress = (ProgressBar) findViewById(R.id.progress);
 
         waterDetailsAmount = (TextView) findViewById(R.id.tv_water_details_amount);
         waterDetailsDate = (TextView) findViewById(R.id.tv_water_details_date);
@@ -82,7 +86,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (cursor.moveToFirst()) {
 
             int amount = cursor.getInt(cursor.getColumnIndex(WaterContract.WaterEntry.COLUMN_WATER_AMOUNT));
-            int newAmount = amount + 200;
+            int cupSize = cursor.getInt(cursor.getColumnIndex(WaterContract.WaterEntry.COLUMN_WATER_CUP));
+            int newAmount = amount + cupSize;
 
             db = waterDbHelper.getWritableDatabase();
 
@@ -92,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             int count = db.update(WaterContract.WaterEntry.TABLE_NAME, values, selection, arguments);
             updateWaterView();
         } else {
-            Toast.makeText(this, "Oh Poop", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Something went wrong.", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -126,7 +131,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (cursor.moveToFirst()) {
             int amount = cursor.getInt(cursor.getColumnIndex(WaterContract.WaterEntry.COLUMN_WATER_AMOUNT));
             waterDetailsDate.setText(cursor.getString(cursor.getColumnIndex(WaterContract.WaterEntry.COLUMN_WATER_DATE)));
-            waterDetailsAmount.setText(amount + "ml");
+            waterDetailsAmount.setText(amount + "ml / 2000ml");
+            if(amount < 2000) {
+                int currentProgress = amount / 2000 * 100;
+                progress.setProgress(currentProgress);
+            } else {
+                progress.setProgress(100);
+            }
         }
         else {
             db = waterDbHelper.getWritableDatabase();
@@ -156,6 +167,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.cup_settings:
+                intent = new Intent(this, CupSettings.class);
+                startActivity(intent);
                 break;
             case R.id.step_counter:
                 break;
@@ -164,6 +177,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.drinking_data:
+                intent = new Intent(this, ViewDrinkingWater.class);
+                startActivity(intent);
                 break;
             case R.id.general_setting:
                 break;

@@ -25,4 +25,13 @@
         <item>Strength - Stomach</item>
         <item>Strength - Back</item>
     </string-array>
+    <string-array name="cup_sizes_not">
+        <item>100ml</item>
+        <item>150ml</item>
+        <item>200ml</item>
+        <item>250ml</item>
+        <item>300ml</item>
+        <item>400ml</item>
+        <item>500ml</item>
+    </string-array>
 </resources>
