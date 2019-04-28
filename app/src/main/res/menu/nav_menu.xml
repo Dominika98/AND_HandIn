@@ -3,10 +3,6 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/display_data"
-            android:icon="@drawable/data_icon"
-            android:title="Display Data"/>
-        <item
             android:id="@+id/add_workout"
             android:icon="@drawable/add_icon"
             android:title="Add Completed Workout"/>
@@ -27,6 +23,15 @@
             <item
                 android:id="@+id/drinking_data"
                 android:title="Drinking Water Data"/>
+
+        </menu>
+    </item>
+    <item android:title="Weather">
+        <menu>
+            <item
+                android:id="@+id/getData"
+                android:icon="@drawable/download"
+                android:title="View Weather"/>
 
         </menu>
     </item>

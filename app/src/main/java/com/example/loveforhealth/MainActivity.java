@@ -126,7 +126,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             values.put(WaterContract.WaterEntry.COLUMN_WATER_AMOUNT, newAmount);
 
             int count = db.update(WaterContract.WaterEntry.TABLE_NAME, values, selection, arguments);
-            
+
+            Toast.makeText(this, cupSize + "ml added.", Toast.LENGTH_SHORT).show();
+
             updateWaterView();
         } else {
             Toast.makeText(this, "Something went wrong.", Toast.LENGTH_SHORT).show();
@@ -186,8 +188,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Intent intent;
         switch (menuItem.getItemId()) {
-            case R.id.display_data:
-                break;
+            case R.id.getData:
+                intent = new Intent(this, GetData.class);
+                startActivity(intent);
+            break;
             case R.id.add_workout:
                 intent = new Intent(this, WorkoutEditor.class);
                 startActivity(intent);
